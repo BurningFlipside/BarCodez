@@ -1,6 +1,11 @@
 # Barcode File generator
 
 This code is what's been used to generate barcodes for ticket variable printing
+
+It will generate a list of ticket numbers following a standard format, then pair the ticket number with a randomly generated short code.
+
+Outputs two files, one test file that contains the mapping of the ticker number to short code and a pdf file that is ready to be delivered to printer with ticket art
+
 first used in 2015
 
 ### install / configure
