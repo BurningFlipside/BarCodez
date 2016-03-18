@@ -1,11 +1,16 @@
 # Barcode File generator
 
-#### check out the repo
+This code is what's been used to generate barcodes for ticket variable printing
+first used in 2015
+
+### install / configure
 ```
 git clone https://gitlab.com/BurningFlipside/BarCodez.git
+cd BarCodez
+bundle install
 ```
 
-#### Modify ticket numbers
+### Modify ticket numbers
 
 open make_bars.rb and modify the following hash
 ```
@@ -17,7 +22,7 @@ numtix = {
 }
 ```
 
-#### Modify ticket prices
+### Modify ticket prices
 
 open make_bars.rb and modify the following hash
 ```
@@ -29,7 +34,7 @@ prices = {
 }
 ```
 
-#### Modify ticket size
+### Modify ticket size
 
 open make_bars.rb and modify the following lines
 ```
@@ -45,11 +50,11 @@ bc_place = {
 }
 ```
 
-#### generate the barcodes
+### generate the barcodes
 ```
 ruby make_bars.rb
 ```
 
-#### output files
+### output files
 * outputfile.pdf - this is the file to deliver to the printer
 * ticket_codez.txt - this file contains the map of ticket number to ticket short code
