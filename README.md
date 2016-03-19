@@ -1,12 +1,17 @@
 # Barcode File generator
 
-This code is what's been used to generate barcodes for ticket variable printing
+This code is what's been used to generate barcodes for ticket variable printing.
 
-It will generate a list of ticket numbers following a standard format, then pair the ticket number with a randomly generated short code.
+It will generate a list of ticket numbers following the format
+* AXXXX for adult tickets
+* TXXXX for teen tickets
+* KXXXX for kid tickets
+* CXXXX for child tickets
 
-Outputs two files, one test file that contains the mapping of the ticker number to short code and a pdf file that is ready to be delivered to printer with ticket art
+Ticket numbers are then paired with a randomly generated 6 character short code.
 
-first used in 2015
+Outputs two files, see below.
+
 
 ### install / configure
 ```
@@ -15,29 +20,35 @@ cd BarCodez
 bundle install
 ```
 
-### Modify ticket numbers
+### Modify ticket numbers or prices
 
 open make_bars.rb and modify the following hash
 ```
-numtix = {
-  adult: 2850,
-  teen: 75,
-  kid: 50,
-  child: 25
+# define tickets numbers, prices, and code prefix
+tix = {
+  adult: {
+    code: 'A',
+    count: 2850,
+    price: 111
+  },
+  teen: {
+    code: 'T',
+    count: 75,
+    price: 111
+  },
+  kid: {
+    code: 'K',
+    count: 50,
+    price: 33
+  },
+  child: {
+    code: 'C',
+    count: 25,
+    price: 0
+  }
 }
 ```
 
-### Modify ticket prices
-
-open make_bars.rb and modify the following hash
-```
-prices = {
-  adult: 111,
-  teen: 111,
-  kid: 33,
-  child: 0
-}
-```
 
 ### Modify ticket size
 
