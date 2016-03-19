@@ -30,22 +30,26 @@ tix = {
   }
 }
 
+pdf_filename = 'outputfile.pdf'
+txt_filename = 'ticket_codez.txt'
+
 ticket_height = in2pt(4.88) # height in inches
 ticket_width = in2pt(2.13) # width in inches
-
-codez_txt = File.new("ticket_codez.txt",  "w+")
-codez_txt.truncate(0) # empty the file
+barcode_height = in2pt(0.2) # height of barcode
 
 pdf_opts = {
-  :page_size => [ticket_width, ticket_height],
+  :page_size => [ticket_width, ticket_height], # set width / height
   :margin => [0, 0] # [top/bottom, [left/right]]
 }
-pdf = Prawn::Document.new(pdf_opts)
-pdf.font 'Helvetica'
+pdf = Prawn::Document.new(pdf_opts) # create new pdf document
+pdf.font 'Helvetica' # set font
+
+codez_txt = File.new(txt_filename,  "w+") #create/open text file
+codez_txt.truncate(0) # empty the file
 
 # generate hash of ticket data
 tickets = {}
-tix.each do |k, v|
+tix.each do |k, v| # for each type
   tickets[k.to_sym]=[];
   (1..v[:count]).each do |n|
     tickets[k.to_sym][n] = {
@@ -63,11 +67,12 @@ tickets.each do |type, block|
 
   block.each do |ticket|
     next if ticket.nil?
+
     puts ticket
 
     bc = Barby::Code128.new("#{ticket[:number]} #{ticket[:code]}")
     bc_out = Barby::PrawnOutputter.new(bc)
-    bc_out.height = in2pt(0.2)
+    bc_out.height = barcode_height
 
     # if changing ticket height or width you may also want to modify the barcode placement
     bc_place = {
@@ -90,4 +95,4 @@ tickets.each do |type, block|
 end
 
 codez_txt.close
-pdf.render_file 'outputfile.pdf'
+pdf.render_file pdf_filename
