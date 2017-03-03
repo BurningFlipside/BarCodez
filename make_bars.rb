@@ -10,22 +10,22 @@ include Prawn::Measurements #for in2pt methods
 tix = {
   adult: {
     code: 'A',
-    count: 2850,
+    count: 3175,
     price: 111
   },
   teen: {
     code: 'T',
-    count: 75,
+    count: 50,
     price: 111
   },
   kid: {
     code: 'K',
-    count: 50,
+    count: 75,
     price: 33
   },
   child: {
     code: 'C',
-    count: 25,
+    count: 100,
     price: 0
   }
 }
